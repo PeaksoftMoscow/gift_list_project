@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -15,21 +14,22 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "category")
-public class Category {
+@Table(name = "subcategory")
+public class SubCategory {
 
     @Id
-    @GeneratedValue(generator = "category_gen",strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name = "category_gen", sequenceName = "category_seq", allocationSize = 1)
+    @GeneratedValue(generator = "subcategory_gen",strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "subcategory_gen",sequenceName = "subcategory_seq",allocationSize = 1)
     private Long id;
 
-    private String categoryName;
+    private String subCategoryName;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
+    @ManyToOne
     @JsonIgnore
-    private List<SubCategory> subcategories;
+    private Category category;
 
     @OneToMany
     @JsonIgnore
     private List<Charity> charities;
+
 }

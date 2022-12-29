@@ -48,7 +48,7 @@ public class User implements UserDetails {
     @Column(name = "phone_number")
     private Long number;
 
-    private boolean image;
+    private String image;
 
     @Column(name = "country")
     private Country country;
@@ -65,8 +65,11 @@ public class User implements UserDetails {
     @Column(name = "important_to_know")
     private String importantToKnow;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = ALL, mappedBy = "user")
+    @OneToMany(fetch = FetchType.LAZY, cascade = ALL, mappedBy = "user")
     private List<WishList> wishList;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "receivers")
+    private List<Notification> notificationList = new ArrayList<>();
 
     @OneToMany(cascade = ALL, mappedBy = "user")
     @JsonIgnore
@@ -87,17 +90,14 @@ public class User implements UserDetails {
     @OneToMany(cascade = ALL, mappedBy = "user")
     private List<ShoeSize> shoeSizes;
 
-    @OneToMany(cascade = ALL, mappedBy = "user")
-    private List<Category> categories;
-
-    @ManyToMany(fetch = FetchType.EAGER, cascade = ALL)
-    @JoinColumn(name = "friends")
-    @JsonIgnore
-    private List<User> friends = new ArrayList<>();
-
-    @ManyToMany(fetch = FetchType.EAGER, cascade = ALL)
-    @JsonIgnore
-    private List<User> requestToFriends = new ArrayList<>();
+//    @ManyToMany(fetch = FetchType.EAGER, cascade = ALL)
+//    @JoinColumn(name = "friends")
+//    @JsonIgnore
+//    private List<User> friends = new ArrayList<>();
+//
+//    @ManyToMany(fetch = FetchType.EAGER, cascade = ALL)
+//    @JsonIgnore
+//    private List<User> requestToFriends = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
     private Role role;
