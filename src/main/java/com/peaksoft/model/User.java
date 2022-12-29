@@ -90,14 +90,6 @@ public class User implements UserDetails {
     @OneToMany(cascade = ALL, mappedBy = "user")
     private List<ShoeSize> shoeSizes;
 
-//    @ManyToMany(fetch = FetchType.EAGER, cascade = ALL)
-//    @JoinColumn(name = "friends")
-//    @JsonIgnore
-//    private List<User> friends = new ArrayList<>();
-//
-//    @ManyToMany(fetch = FetchType.EAGER, cascade = ALL)
-//    @JsonIgnore
-//    private List<User> requestToFriends = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
     private Role role;
