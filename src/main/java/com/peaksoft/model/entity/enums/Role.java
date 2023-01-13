@@ -16,6 +16,7 @@ import java.util.List;
 @ToString
 public class Role implements GrantedAuthority {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "role_gen",

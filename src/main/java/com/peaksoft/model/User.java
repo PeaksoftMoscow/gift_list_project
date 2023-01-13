@@ -4,10 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.peaksoft.model.entity.*;
 import com.peaksoft.model.entity.enums.Country;
 import com.peaksoft.model.entity.enums.Role;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.peaksoft.model.entity.enums.RoleE;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,6 +27,7 @@ import static javax.persistence.CascadeType.ALL;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class User implements UserDetails {
 
     @Id
@@ -100,6 +99,9 @@ public class User implements UserDetails {
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private List<Role> roles;
+
+    @Enumerated(EnumType.STRING)
+    private RoleE roleES;
 
 
 

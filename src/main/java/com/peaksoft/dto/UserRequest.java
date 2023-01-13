@@ -1,6 +1,7 @@
 package com.peaksoft.dto;
 
 import com.peaksoft.model.entity.enums.Role;
+import com.peaksoft.model.entity.enums.RoleE;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,5 +12,5 @@ public class UserRequest {
     private String lastName;
     private String email;
     private String password;
-    private Role role;
+    private RoleE role;
 }
