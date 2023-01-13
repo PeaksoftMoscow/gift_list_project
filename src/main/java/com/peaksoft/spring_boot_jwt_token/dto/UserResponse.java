@@ -1,10 +1,8 @@
-package com.peaksoft.spring_boot.dto;
+package com.peaksoft.spring_boot_jwt_token.dto;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -12,9 +10,9 @@ import java.time.LocalDate;
 public class UserResponse {
 
     private Long id;
-    private String name;
-    private String surname;
+    private String firstName;
+    private String lastName;
     private String email;
     private String password;
-    private LocalDate created;
+
 }

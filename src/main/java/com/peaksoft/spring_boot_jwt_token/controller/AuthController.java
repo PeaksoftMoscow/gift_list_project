@@ -1,10 +1,10 @@
-package com.peaksoft.spring_boot.controller;
+package com.peaksoft.spring_boot_jwt_token.controller;
 
-import com.peaksoft.spring_boot.dto.*;
-import com.peaksoft.spring_boot.entity.User;
-import com.peaksoft.spring_boot.repository.UserRepository;
-import com.peaksoft.spring_boot.security.jwt.JwTokenUtil;
-import com.peaksoft.spring_boot.service.UserService;
+import com.peaksoft.spring_boot_jwt_token.dto.*;
+import com.peaksoft.model.User;
+import com.peaksoft.spring_boot_jwt_token.repository.UserRepository;
+import com.peaksoft.spring_boot_jwt_token.security.jwt.JwTokenUtil;
+import com.peaksoft.spring_boot_jwt_token.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;

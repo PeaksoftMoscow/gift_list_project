@@ -1,8 +1,7 @@
-package com.peaksoft.spring_boot.service;
+package com.peaksoft.spring_boot_jwt_token.service;
 
-import com.peaksoft.spring_boot.repository.UserRepository;
+import com.peaksoft.spring_boot_jwt_token.repository.UserRepository;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

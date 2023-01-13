@@ -1,7 +1,7 @@
-package com.peaksoft.spring_boot.dto;
+package com.peaksoft.spring_boot_jwt_token.dto;
 
-import com.peaksoft.spring_boot.entity.Role;
-import com.peaksoft.spring_boot.entity.User;
+import com.peaksoft.model.User;
+import com.peaksoft.model.entity.enums.Role;
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;

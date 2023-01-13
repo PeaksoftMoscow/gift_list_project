@@ -1,4 +1,4 @@
-package com.peaksoft.spring_boot.dto;
+package com.peaksoft.spring_boot_jwt_token.dto;
 
 public class ValidationType {
 

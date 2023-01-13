@@ -1,15 +1,14 @@
-package com.peaksoft.spring_boot.service;
+package com.peaksoft.spring_boot_jwt_token.service;
 
-import com.peaksoft.spring_boot.dto.UserRequest;
-import com.peaksoft.spring_boot.dto.UserResponse;
-import com.peaksoft.spring_boot.entity.User;
-import com.peaksoft.spring_boot.repository.UserRepository;
+import com.peaksoft.spring_boot_jwt_token.dto.UserRequest;
+import com.peaksoft.spring_boot_jwt_token.dto.UserResponse;
+import com.peaksoft.model.User;
+import com.peaksoft.spring_boot_jwt_token.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.Optional;
 
 import static java.lang.String.format;
@@ -58,17 +57,16 @@ public class UserService {
 
     public User mapToEntity(UserRequest request){
         User user  = new User();
-        user.setName(request.getName());
-        user.setSurname(request.getSurname());
+        user.setFirstName(request.getFirstName());
+        user.setLastName(request.getLastName());
         user.setEmail(request.getEmail());
         user.setPassword(request.getPassword());
-        user.setCreated(LocalDate.now());
         return user;
     }
 
     public User mapToUpdate(UserRequest request,User user){
-        user.setName(request.getName());
-        user.setSurname(request.getSurname());
+        user.setFirstName(request.getFirstName());
+        user.setLastName(request.getLastName());
         user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         return user;
@@ -77,10 +75,9 @@ public class UserService {
     public UserResponse mapToResponse(User user){
         return UserResponse.builder()
                 .id(user.getId())
-                .name(user.getName())
-                .surname(user.getSurname())
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
                 .email(user.getEmail())
-                .created(user.getCreated())
                 .build();
     }
 }
