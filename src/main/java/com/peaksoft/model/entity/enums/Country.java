@@ -3,10 +3,9 @@ package com.peaksoft.model.entity.enums;
 public enum Country {
 
     KYRGYZSTAN,
+    AZERBAIJAN,
     RUSSIA,
-    USA,
-    TURKEY,
-    CHINA,
     KAZAKHSTAN,
     UZBEKISTAN,
+    TADJIKISTAN,
 }
