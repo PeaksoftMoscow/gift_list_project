@@ -3,6 +3,7 @@ package com.peaksoft.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.peaksoft.model.entity.*;
 import com.peaksoft.model.entity.enums.Country;
+import com.peaksoft.model.entity.enums.FriendStatus;
 import com.peaksoft.model.entity.enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -48,7 +49,7 @@ public class User implements UserDetails {
     @Column(name = "phone_number")
     private Long number;
 
-    private boolean image;
+    private String image;
 
     @Column(name = "country")
     private Country country;
@@ -64,6 +65,9 @@ public class User implements UserDetails {
     @Size(max = 5000)
     @Column(name = "important_to_know")
     private String importantToKnow;
+
+    @Enumerated(EnumType.STRING)
+    private FriendStatus friendStatus;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = ALL, mappedBy = "user")
     private List<WishList> wishList;
@@ -101,6 +105,21 @@ public class User implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+
+    public void addRequestToFriend(User user) {
+        if (requestToFriends == null) {
+            requestToFriends = new ArrayList<>();
+        }
+        requestToFriends.add(user);
+    }
+
+    public void acceptToFriend(User user) {
+        if (friends == null) {
+            friends = new ArrayList<>();
+        }
+        friends.add(user);
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
