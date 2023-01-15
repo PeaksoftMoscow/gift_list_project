@@ -20,6 +20,7 @@ public class ShoeSize {
 
     @Id
     private Long id;
+
     private int size;
     @ManyToOne
     @JsonIgnore

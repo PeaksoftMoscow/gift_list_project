@@ -2,7 +2,7 @@ package com.peaksoft.model.entity.enums;
 
 public enum ComplaintsType {
 
-    THIS_IS_SPAM,
+    SPAM,
 
     FALSE_INFORMATION,
 
