@@ -37,7 +37,6 @@ public class AutController {
     private final AuthenticationManager authenticationManager;
 
     @PostMapping("login")
-    @Operation(summary = "login", description = "we can login")
     public ResponseEntity<LoginResponse> getLogin(@RequestBody UserRequest request){
         try {
             UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(request.getEmail(),

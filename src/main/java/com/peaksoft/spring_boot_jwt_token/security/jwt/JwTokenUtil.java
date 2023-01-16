@@ -19,7 +19,7 @@ public class JwTokenUtil {
     @Value("S{jwt.secret}")
     private String jwtSecret;
 
-    private final  Long JWT_TOKEN_VALIDITY= 7 + 24 * 60 * 60 * 1000L; // 1 week
+    private final  Long JWT_TOKEN_VALIDITY= 30 + 24 * 60 * 60 * 1000L; // 1 week
 
     private String createToken(Map<String,Object> claims, String subject){
         return Jwts.builder()

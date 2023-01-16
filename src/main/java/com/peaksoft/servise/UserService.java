@@ -73,6 +73,8 @@ public class UserService {
 		userRepository.findByEmail(user1.getEmail());
 		User user = mapToEntity(userRequest);
 		user.setPassword(encoder.encode(userRequest.getPassword()));
+		user.setRoleES(RoleE.USER);
+		user.setRoles(null);
 		userRepository.save(user);
 		return mapToResponse(user);
 	}
