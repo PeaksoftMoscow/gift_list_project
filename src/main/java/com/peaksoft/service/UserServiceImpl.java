@@ -1,21 +1,14 @@
-package com.peaksoft.servise;
+package com.peaksoft.service;
 
 import com.peaksoft.model.User;
-import com.peaksoft.model.entity.enums.Role;
 import com.peaksoft.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.webjars.NotFoundException;
 
 import javax.transaction.Transactional;
-import java.util.Collection;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 import static java.lang.String.format;
 

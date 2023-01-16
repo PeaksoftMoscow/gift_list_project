@@ -1,4 +1,4 @@
-package com.peaksoft.servise;
+package com.peaksoft.service;
 
 import com.peaksoft.dto.UserRequest;
 import com.peaksoft.dto.UserResponse;
@@ -6,11 +6,8 @@ import com.peaksoft.model.User;
 import com.peaksoft.model.entity.enums.Role;
 import com.peaksoft.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDate;
 
 @Service
 @RequiredArgsConstructor
