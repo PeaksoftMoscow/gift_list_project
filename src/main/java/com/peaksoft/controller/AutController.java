@@ -34,19 +34,7 @@ public class AutController {
 
     private final ResetPasswordService resetPasswordService;
 
-    @PostMapping("login")
-    public ResponseEntity<LoginResponse> getLogin(@RequestBody UserRequest request){
-        try {
-            UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(request.getEmail(),
-                    request.getPassword());
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
-            User user = userRepository.findByEmail(token.getName());
-            return ResponseEntity.ok().body(loginMapper.loginView(jwTokenUtil.generateToken(user), ValidationType.SUCCESSFUL, user));
-        }catch (BadCredentialsException ex){
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(loginMapper.loginView("", ValidationType.LOGIN_FAILED, null));
 
-        }
-    }
 
 
     @PostMapping("/register")
