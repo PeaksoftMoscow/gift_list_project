@@ -1,6 +1,6 @@
 package com.peaksoft.dto;
 
-import com.peaksoft.model.entity.enums.Role;
+
 import com.peaksoft.model.entity.enums.RoleE;
 import lombok.Getter;
 import lombok.Setter;

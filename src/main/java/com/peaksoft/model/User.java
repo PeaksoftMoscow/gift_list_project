@@ -3,7 +3,7 @@ package com.peaksoft.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.peaksoft.model.entity.*;
 import com.peaksoft.model.entity.enums.Country;
-import com.peaksoft.model.entity.enums.Role;
+
 import com.peaksoft.model.entity.enums.RoleE;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -89,16 +89,7 @@ public class User implements UserDetails {
     @OneToMany(cascade = ALL, mappedBy = "user")
     private List<ShoeSize> shoeSizes;
 
-    @ManyToMany(targetEntity = Role.class,
-            cascade = {CascadeType.MERGE,
-                    CascadeType.PERSIST,
-                    CascadeType.REFRESH,
-                    CascadeType.DETACH},
-            fetch = FetchType.EAGER)
-    @JoinTable(name = "users_roles",
-            joinColumns = {@JoinColumn(name = "user_id")},
-            inverseJoinColumns = {@JoinColumn(name = "role_id")})
-    private List<Role> roles;
+
 
     @Enumerated(EnumType.STRING)
     private RoleE roleES;
@@ -108,11 +99,12 @@ public class User implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<SimpleGrantedAuthority> grantedAuthorities = new LinkedList<>();
-        for(Role role : roles){
-            grantedAuthorities.add(new SimpleGrantedAuthority(role.getRoleName()));
-        }
+
+            grantedAuthorities.add(new SimpleGrantedAuthority(roleES.getAuthority()));
+
         return grantedAuthorities;
     }
+
 
     @Override
     public String getUsername() {

@@ -6,13 +6,14 @@ import com.peaksoft.model.User;
 
 import com.peaksoft.model.entity.enums.RoleE;
 import com.peaksoft.repository.UserRepository;
+import com.peaksoft.spring_boot_jwt_token.dto.LoginResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.util.*;
 
 import static java.lang.String.format;
 
@@ -73,8 +74,6 @@ public class UserService {
 		userRepository.findByEmail(user1.getEmail());
 		User user = mapToEntity(userRequest);
 		user.setPassword(encoder.encode(userRequest.getPassword()));
-		user.setRoleES(RoleE.USER);
-		user.setRoles(null);
 		userRepository.save(user);
 		return mapToResponse(user);
 	}
@@ -102,4 +101,6 @@ public class UserService {
 				       .role(user.getRoleES())
 				       .build();
 	}
-	}
+
+
+}
