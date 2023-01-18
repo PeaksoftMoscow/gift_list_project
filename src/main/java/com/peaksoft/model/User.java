@@ -3,11 +3,9 @@ package com.peaksoft.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.peaksoft.model.entity.*;
 import com.peaksoft.model.entity.enums.Country;
-import com.peaksoft.model.entity.enums.Role;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+
+import com.peaksoft.model.entity.enums.RoleE;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,6 +27,7 @@ import static javax.persistence.CascadeType.ALL;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class User implements UserDetails {
 
     @Id
@@ -91,16 +90,21 @@ public class User implements UserDetails {
     private List<ShoeSize> shoeSizes;
 
 
+
     @Enumerated(EnumType.STRING)
-    private Role role;
+    private RoleE roleES;
+
 
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<SimpleGrantedAuthority> grantedAuthorities = new LinkedList<>();
-        grantedAuthorities.add(new SimpleGrantedAuthority(role.getAuthority()));
+
+            grantedAuthorities.add(new SimpleGrantedAuthority(roleES.getAuthority()));
+
         return grantedAuthorities;
     }
+
 
     @Override
     public String getUsername() {
