@@ -1,6 +1,6 @@
 package com.peaksoft.service;
 
-import com.peaksoft.config.JwtTokenUtil;
+import com.peaksoft.config.jwt.JwTokenUtil;
 import com.peaksoft.dto.AuthResponse;
 import com.peaksoft.dto.Mail;
 import com.peaksoft.dto.ValidationType;
@@ -30,7 +30,7 @@ public class ResetPasswordService {
     private final EmailService emailService;
     private final UserRepository userRepository;
 
-    private final JwtTokenUtil jwtTokenUtil;
+    private final JwTokenUtil jwtTokenUtil;
     public String processForgotPassword(String email, HttpServletRequest request) {
 
         User user = userRepository.findByEmail(email);
@@ -74,7 +74,7 @@ public class ResetPasswordService {
         authResponse.setEmail(user.getEmail());
         authResponse.setJwtToken(token);
         authResponse.setMessage(ValidationType.SUCCESSFUL);
-        authResponse.setAuthorities(String.valueOf(user.getRole()));
+        authResponse.setAuthorities(String.valueOf(user.getRoleES()));
         return authResponse;
     }
 

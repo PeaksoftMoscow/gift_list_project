@@ -3,7 +3,7 @@ package com.peaksoft.service;
 import com.peaksoft.dto.UserRequest;
 import com.peaksoft.dto.UserResponse;
 import com.peaksoft.model.User;
-import com.peaksoft.model.entity.enums.Role;
+import com.peaksoft.model.entity.enums.RoleE;
 import com.peaksoft.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -31,9 +31,9 @@ public User mapToEntity(UserRequest request) {
 	user.setEmail(request.getEmail());
 	user.setPassword(request.getPassword());
 	if (user.getFirstName().equals("ryskeldi")) {
-		user.setRole(Role.ADMIN);
+		user.setRoleES(RoleE.ADMIN);
 	} else {
-		user.setRole(Role.USER);
+		user.setRoleES(RoleE.USER);
 	}
 	return user;
 }
@@ -44,7 +44,7 @@ public UserResponse mapToResponse(User user) {
 			       .lastName(user.getLastName())
 			       .email(user.getEmail())
 			       .password(user.getPassword())
-			       .role(user.getRole())
+			       .role(user.getRoleES())
 			       .build();
 }
 }

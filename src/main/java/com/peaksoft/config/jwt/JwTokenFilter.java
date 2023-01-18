@@ -1,6 +1,6 @@
-package com.peaksoft.spring_boot_jwt_token.security.jwt;
+package com.peaksoft.config.jwt;
 
-import com.peaksoft.servise.UserServiceImpl;
+import com.peaksoft.service.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

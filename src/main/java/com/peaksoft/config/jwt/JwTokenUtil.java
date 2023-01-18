@@ -1,4 +1,4 @@
-package com.peaksoft.spring_boot_jwt_token.security.jwt;
+package com.peaksoft.config.jwt;
 
 
 import io.jsonwebtoken.Claims;

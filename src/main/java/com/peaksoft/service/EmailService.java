@@ -42,6 +42,4 @@ public class EmailService {
         throw new RuntimeException(ex);
     }
     }
-
-
 }
