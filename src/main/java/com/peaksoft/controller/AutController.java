@@ -12,14 +12,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/public")
+@RequestMapping("/api/jwt")
 public class AutController {
 
     private final LoginMapper loginMapper;
@@ -40,7 +39,7 @@ public class AutController {
             UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(request.getEmail(),
                     request.getPassword());
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
-            User user = userRepository.findByEmail(token.getName());
+            User user = userRepository.findByEmail(token.getName()).get();
             return ResponseEntity.ok().body(loginMapper.loginView(jwTokenUtil.generateToken(user), ValidationType.SUCCESSFUL, user));
         }catch (BadCredentialsException ex){
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(loginMapper.loginView("", ValidationType.LOGIN_FAILED, null));
@@ -49,7 +48,7 @@ public class AutController {
     }
 
 
-    @PostMapping("/register")
+    @PostMapping("/registration")
     public UserResponse create(@RequestBody UserRequest request) {
         return userService.register(request);
     }
@@ -60,8 +59,8 @@ public class AutController {
     }
 
     @PostMapping("/reset_password")
-    public AuthResponse resetPassword(@RequestParam String token,@RequestParam String password,@RequestParam String currentPassword){
-        return resetPasswordService.save(token,password,currentPassword);
+    public AuthResponse resetPassword(@RequestParam String token,@RequestParam String password,@RequestParam String confirmPassword){
+        return resetPasswordService.save(token,password,confirmPassword);
     }
 }
 

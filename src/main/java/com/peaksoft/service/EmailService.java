@@ -28,12 +28,12 @@ public class EmailService {
         Session session = Session.getInstance(properties, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("saidibakassatybaldyev@gmail.com", "skeifkeifjwe0");
+                return new PasswordAuthentication("ssaidibakas@gmail.com", "yaiegxsbmehqasdd");
             }
         });
     try {
         Message message = new MimeMessage(session);
-        message.setFrom(new InternetAddress("saidibakassatybaldyev@gmail.com"));
+        message.setFrom(new InternetAddress("ssaidibakas@gmail.com"));
         message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(mail.getTo()));
         message.setSubject(message.getSubject());
         message.setText(url);

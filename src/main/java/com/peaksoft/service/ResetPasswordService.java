@@ -33,7 +33,7 @@ public class ResetPasswordService {
     private final JwTokenUtil jwtTokenUtil;
     public String processForgotPassword(String email, HttpServletRequest request) {
 
-        User user = userRepository.findByEmail(email);
+        User user = userRepository.findByEmail(email).get();
         if (user == null){
             throw new UsernameNotFoundException("User with email" + email + "not found");
         }
@@ -42,26 +42,26 @@ public class ResetPasswordService {
         resetPasswordToken.setToken(jwtTokenUtil.generateToken(user));
         resetPasswordToken.setExpirationTime(LocalDateTime.now().plusMinutes(30));
         Mail mail = new Mail();
-        mail.setFrom("saidibakassatybaldyev@gmail.com");
+        mail.setFrom("ssaidibakas@gmail.com");
         mail.setTo(user.getEmail());
         mail.setSubject("Password reset request");
         Map<String ,Object> mailModel = new HashMap<>();
         mailModel.put("token",resetPasswordToken);
         mailModel.put("user",user);
-        String url = request.getScheme() + ";//" + request.getServerName() + ":" + request.getServerPort() + "/api/public";
-        mailModel.put("resetUrl",url + "/reset-password?token=" + resetPasswordToken.getToken());
+        String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/api/jwt";
+        mailModel.put("resetUrl",url + "/reset_password?token=" + resetPasswordToken.getToken());
         System.out.println(url + " " + resetPasswordToken.getToken());
-        String URL = url + "reset-password?token=" + resetPasswordToken.getToken();
+        String URL = url + "/reset_password?token=" + resetPasswordToken.getToken();
         mail.setModel(mailModel);
         resetPasswordTokenRepository.save(resetPasswordToken);
         emailService.sendEmail(mail, URL);
         return ValidationType.SUCCESSFUL;
     }
 
-    public AuthResponse save(String token, String password, String currentPassword) {
+    public AuthResponse save(String token, String password, String confirmPassword) {
         ResetPasswordToken resetToken = resetPasswordTokenRepository.findByToken(token);
         User user = resetToken.getUser();
-        if (password.equals(currentPassword)) {
+        if (password.equals(confirmPassword)) {
             user.setPassword(password);
         }else {
             throw new IncorrectLoginException("Password don't match");
