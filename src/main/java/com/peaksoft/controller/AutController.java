@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/jwt")
-@Tag(name = "Student API",
+@Tag(name = "Auth  API",
         description = "User with role admin, editor can login and registration ")
 public class AutController {
 
@@ -37,6 +37,7 @@ public class AutController {
     private final AuthenticationManager authenticationManager;
 
     @PostMapping("login")
+    @Operation(summary = "login",description = "")
     public ResponseEntity<LoginResponse> getLogin(@RequestBody UserRequest request){
         try {
             UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(request.getEmail(),
@@ -51,6 +52,7 @@ public class AutController {
     }
 
     @PostMapping("/registration")
+    @Operation(summary = "registration",description = "user can registration ")
     public UserResponse create(@RequestBody UserRequest request) {
         return userService.register(request);
     }
