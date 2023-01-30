@@ -1,6 +1,6 @@
-package com.peaksoft.spring_boot_jwt_token.security.jwt;
+package com.peaksoft.config.jwt;
 
-import com.peaksoft.servise.UserServiceImpl;
+import com.peaksoft.service.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -37,7 +37,7 @@ public class JwTokenFilter extends OncePerRequestFilter {
             username = jwTokenUtil.getUserNameFromToken(jwt);
             if(username != null && SecurityContextHolder.getContext().getAuthentication() == null){
                 UserDetails userDetails = this.userServiceImpl.loadUserByUsername(username);
-                if(jwTokenUtil.validationToken(jwt,userDetails)){
+                if(jwTokenUtil.validationToken(jwt, userDetails)){
                     UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userDetails,null,
                             userDetails.getAuthorities());
                     token.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));

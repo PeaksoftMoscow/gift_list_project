@@ -1,7 +1,7 @@
-package com.peaksoft.spring_boot_jwt_token.security;
+package com.peaksoft.config;
 
-import com.peaksoft.spring_boot_jwt_token.security.jwt.JwTokenFilter;
-import com.peaksoft.servise.UserServiceImpl;
+import com.peaksoft.service.UserServiceImpl;
+import com.peaksoft.config.jwt.JwTokenFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
