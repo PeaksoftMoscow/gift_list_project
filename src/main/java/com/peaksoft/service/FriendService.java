@@ -67,7 +67,7 @@ public class FriendService {
         }
         if (user.getRequestToFriends().contains(friend)) {
             if (!friend.getRequestToFriends().contains(user)) {
-                throw new NotFoundException("You can't send a request because a request has been sent to you ");
+                throw new NotFoundException("You can request after cancel or accept");
             }
         }
 
