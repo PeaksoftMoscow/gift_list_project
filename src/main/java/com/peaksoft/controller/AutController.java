@@ -6,6 +6,8 @@ import com.peaksoft.model.User;
 import com.peaksoft.repository.UserRepository;
 import com.peaksoft.service.ResetPasswordService;
 import com.peaksoft.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
