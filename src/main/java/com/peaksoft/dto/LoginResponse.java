@@ -1,4 +1,4 @@
-package com.peaksoft.spring_boot_jwt_token.dto;
+package com.peaksoft.dto;
 
 import lombok.Getter;
 import lombok.Setter;

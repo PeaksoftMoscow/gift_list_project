@@ -14,10 +14,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 import static javax.persistence.CascadeType.ALL;
 
@@ -130,4 +127,10 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-}
+
+
+    }
+
+
+
+
