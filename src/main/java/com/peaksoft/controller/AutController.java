@@ -6,6 +6,8 @@ import com.peaksoft.model.User;
 import com.peaksoft.repository.UserRepository;
 import com.peaksoft.service.ResetPasswordService;
 import com.peaksoft.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,8 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/jwt")
+@Tag(name = "Auth  API",
+        description = "User with role admin, editor can login and registration ")
 public class AutController {
 
     private final LoginMapper loginMapper;
@@ -34,6 +38,7 @@ public class AutController {
     private final ResetPasswordService resetPasswordService;
 
     @PostMapping("login")
+    @Operation(summary = "login",description = "")
     public ResponseEntity<LoginResponse> getLogin(@RequestBody UserRequest request){
         try {
             UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(request.getEmail(),
@@ -49,16 +54,19 @@ public class AutController {
 
 
     @PostMapping("/registration")
+    @Operation(summary = "registration",description = "user can registration ")
     public UserResponse create(@RequestBody UserRequest request) {
         return userService.register(request);
     }
 
-    @PostMapping("/forgot_password")
+    @PostMapping("/forgot_password ")
+    @Operation(summary = "forgot password",description = "user can forgot password ")
     public String processForgotPassword(@RequestParam("email") String email, HttpServletRequest request){
         return resetPasswordService.processForgotPassword(email,request);
     }
 
     @PostMapping("/reset_password")
+    @Operation(summary = "reset password",description = "user can reset password ")
     public AuthResponse resetPassword(@RequestParam String token,@RequestParam String password,@RequestParam String confirmPassword){
         return resetPasswordService.save(token,password,confirmPassword);
     }
