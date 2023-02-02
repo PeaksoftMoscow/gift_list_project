@@ -14,15 +14,16 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "subcategory")
-public class SubCategory {
+@Table(name = "subcategories")
+public class Subcategory {
 
     @Id
     @GeneratedValue(generator = "subcategory_gen",strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "subcategory_gen",sequenceName = "subcategory_seq",allocationSize = 1)
     private Long id;
 
-    private String subCategoryName;
+    @Column(name = "subcategory_name")
+    private String subcategoryName;
 
     @ManyToOne
     @JsonIgnore
