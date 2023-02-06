@@ -15,7 +15,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "category")
+@Table(name = "categories")
 public class Category {
 
     @Id
@@ -23,11 +23,12 @@ public class Category {
     @SequenceGenerator(name = "category_gen", sequenceName = "category_seq", allocationSize = 1)
     private Long id;
 
+    @Column(name = "category_name")
     private String categoryName;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
     @JsonIgnore
-    private List<SubCategory> subcategories;
+    private List<Subcategory> subcategories;
 
     @OneToMany
     @JsonIgnore
