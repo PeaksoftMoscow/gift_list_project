@@ -2,6 +2,7 @@ package com.peaksoft.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.peaksoft.model.User;
+import com.peaksoft.model.entity.enums.CharityStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -54,8 +55,11 @@ public class WishList {
     @JsonIgnore
     private User user;
 
-    @OneToOne(mappedBy = "wishList",cascade = CascadeType.ALL)
-    private Booking booking;
+@Enumerated(EnumType.STRING)
+private CharityStatus charityStatus;
+
+@OneToOne(mappedBy = "wishList", cascade = CascadeType.ALL)
+private Booking booking;
 
     @OneToMany(mappedBy = "wishList",cascade = CascadeType.ALL)
     private List<Notification> notifications = new ArrayList<>();
