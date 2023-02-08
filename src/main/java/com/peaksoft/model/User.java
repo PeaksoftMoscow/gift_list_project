@@ -16,7 +16,7 @@ import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.*;
 
-import static javax.persistence.CascadeType.ALL;
+import static javax.persistence.CascadeType.*;
 
 @Entity
 @Table(name = "users")
@@ -87,21 +87,42 @@ public class User implements UserDetails {
     private List<ShoeSize> shoeSizes;
 
 
+    @ManyToMany(fetch = FetchType.LAZY, cascade ={PERSIST,REFRESH,MERGE})
+    @JoinColumn(name = "friends")
+    @JsonIgnore
+    private List<User> friends = new ArrayList<>();
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {PERSIST,REFRESH,MERGE})
+    @JsonIgnore
+    private List<User> requestToFriends = new ArrayList<>();
+
 
     @Enumerated(EnumType.STRING)
     private RoleE roleES;
-
 
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<SimpleGrantedAuthority> grantedAuthorities = new LinkedList<>();
 
-            grantedAuthorities.add(new SimpleGrantedAuthority(roleES.getAuthority()));
+        grantedAuthorities.add(new SimpleGrantedAuthority(roleES.getAuthority()));
 
         return grantedAuthorities;
     }
 
+    public void addRequestToFriend(User user) {
+        if (requestToFriends == null) {
+            requestToFriends = new ArrayList<>();
+        }
+        requestToFriends.add(user);
+    }
+
+    public void acceptToFriend(User user) {
+        if (friends == null) {
+            friends = new ArrayList<>();
+        }
+        friends.add(user);
+    }
 
     @Override
     public String getUsername() {

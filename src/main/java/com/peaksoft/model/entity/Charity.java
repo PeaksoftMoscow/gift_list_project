@@ -60,7 +60,7 @@ public class Charity {
             CascadeType.DETACH,
             CascadeType.REFRESH})
     @JoinColumn(name = "subcategory_id")
-    private SubCategory subCategory;
+    private Subcategory subCategory;
 
     @OneToOne(mappedBy = "charity",cascade = CascadeType.ALL)
     private Booking booking;
