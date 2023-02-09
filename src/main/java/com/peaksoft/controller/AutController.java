@@ -24,8 +24,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/jwt")
-@Tag(name = "Student API",
-        description = "User with role admin, editor can login and registration ")
 public class AutController {
 
     private final UserService userService;
