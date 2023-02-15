@@ -3,6 +3,7 @@ package com.peaksoft.model.entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.peaksoft.model.User;
+import com.peaksoft.model.entity.enums.NotificationStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,6 +30,9 @@ public class Notification {
     private String giftName;
 
     private Long giftId;
+
+    @Enumerated(EnumType.STRING)
+    private NotificationStatus notificationStatus;
 
     private boolean isRead;
 
