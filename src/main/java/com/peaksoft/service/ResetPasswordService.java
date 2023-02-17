@@ -6,7 +6,7 @@ import com.peaksoft.dto.Mail;
 import com.peaksoft.dto.ValidationType;
 import com.peaksoft.exception.IncorrectLoginException;
 import com.peaksoft.model.entity.ResetPasswordToken;
-import com.peaksoft.model.User;
+import com.peaksoft.model.entity.User;
 import com.peaksoft.repository.ResetPasswordTokenRepository;
 import com.peaksoft.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -33,7 +33,7 @@ public class ResetPasswordService {
     private final JwTokenUtil jwtTokenUtil;
     public String processForgotPassword(String email, HttpServletRequest request) {
 
-        User user = userRepository.findByEmail(email).get();
+        User user = userRepository.findByEmail(email);
         if (user == null){
             throw new UsernameNotFoundException("User with email" + email + "not found");
         }

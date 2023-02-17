@@ -2,7 +2,7 @@ package com.peaksoft.mapper;
 
 import com.peaksoft.dto.ProfileRequest;
 import com.peaksoft.dto.ProfileResponse;
-import com.peaksoft.model.User;
+import com.peaksoft.model.entity.User;
 import com.peaksoft.model.entity.ShoeSize;
 import com.peaksoft.model.entity.enums.Country;
 import com.peaksoft.repository.ClothingSizeRepository;
@@ -21,20 +21,21 @@ import java.util.List;
       private final ShoeSizeRepository shoeSizeRepository;
       private final ClothingSizeRepository clothingSizeRepository;
 
-              public User mapToEntity(ProfileRequest profileRequest) {
-         User user = new User();
+              public void mapToEntity(User user,ProfileRequest profileRequest) {
           user.setFirstName(profileRequest.getFirstName());
           user.setLastName(profileRequest.getLastName());
           user.setEmail(profileRequest.getEmail());
           user.setNumber(profileRequest.getNumber());
           user.setCountry(Country.valueOf(String.valueOf(profileRequest.getCountry())));
           user.setDateOfBirth(profileRequest.getDateOfBirth());
-       /*  List<ShoeSize> shoeSize = shoeSizeRepository.getDefaultSize();
-          if (profileRequest.getShoeSizes() == null) {
-              user.setShoeSizes(shoeSize);
-            shoeSize.forEach(a -> a.setUser(user));
-        } else user.setShoeSizes(profileRequest.getShoeSizes());
-         shoeSize.forEach(a -> a.setUser(user));*/
+         List<ShoeSize> shoeSize = shoeSizeRepository.findAll();
+//          if (profileRequest.getShoeSizes() == null) {
+//            shoeSize.forEach(a -> a.setUser(user));
+//              throw new NotFoundException("Shoe size  not given");
+ //       }
+          user.setShoeSizes(profileRequest.getShoeSizes());
+         shoeSize.forEach(a -> a.setUser(user));
+         user.setShoeSizes(profileRequest.getShoeSizes());
 
         /*ClothingSize clothingSize = clothingSizeRepository.findById(profileRequest.getClothingSizesId()).get();
              *         user.setClothingSizes((List<ClothingSize>) clothingSize);
@@ -42,7 +43,7 @@ import java.util.List;
              *         user.setShoeSizes((List<ShoeSize>) shoeSize);*/
     user.setImportantToKnow(profileRequest.getImportantToKnow());
          user.setHobbies(profileRequest.getHobbies());
-         return user;
+
          }
 
                  private User getObject(Long id){

@@ -1,6 +1,6 @@
 package com.peaksoft.service;
 
-import com.peaksoft.model.User;
+import com.peaksoft.model.entity.User;
 import com.peaksoft.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserDetailsService {
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(username).get();
+        User user = userRepository.findByEmail(username);
         if (user != null) {
             return user;
         } else {

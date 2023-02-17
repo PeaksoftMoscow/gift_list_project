@@ -2,7 +2,7 @@ package com.peaksoft.controller;
 
 import com.peaksoft.config.jwt.JwTokenUtil;
 import com.peaksoft.dto.*;
-import com.peaksoft.model.User;
+import com.peaksoft.model.entity.User;
 import com.peaksoft.repository.UserRepository;
 import com.peaksoft.service.ResetPasswordService;
 import com.peaksoft.service.UserService;
@@ -44,7 +44,7 @@ public class AutController {
             UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(request.getEmail(),
                     request.getPassword());
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
-            User user = userRepository.findByEmail(token.getName()).get();
+            User user = userRepository.findByEmail(token.getName());
             return ResponseEntity.ok().body(loginMapper.loginView(jwTokenUtil.generateToken(user), ValidationType.SUCCESSFUL, user));
         }catch (BadCredentialsException ex){
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(loginMapper.loginView("", ValidationType.LOGIN_FAILED, null));

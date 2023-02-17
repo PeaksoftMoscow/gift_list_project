@@ -2,7 +2,7 @@ package com.peaksoft.service;
 
 import com.peaksoft.dto.FriendResponse;
 import com.peaksoft.mapper.FriendVIewMapper;
-import com.peaksoft.model.User;
+import com.peaksoft.model.entity.User;
 import com.peaksoft.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -37,7 +37,7 @@ public class FriendService {
     public User getAuthenticatedUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String email = authentication.getName();
-        return userRepository.findByEmail(email).orElseThrow(() -> new NotFoundException("User not found!"));
+        return userRepository.findByEmail(email);
     }
 
     public FriendResponse requestToFriend(Long friendId) {

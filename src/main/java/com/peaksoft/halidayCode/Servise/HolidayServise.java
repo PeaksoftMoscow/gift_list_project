@@ -4,7 +4,7 @@ import com.peaksoft.halidayCode.dto.HolidayRequest;
 import com.peaksoft.halidayCode.dto.HolidayResponse;
 import com.peaksoft.halidayCode.repository.HolidayRepository;
 
-import com.peaksoft.model.User;
+import com.peaksoft.model.entity.User;
 import com.peaksoft.model.entity.Holiday;
 import com.peaksoft.repository.UserRepository;
 import lombok.RequiredArgsConstructor;

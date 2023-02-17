@@ -1,13 +1,10 @@
 package com.peaksoft.service;
 
 import com.peaksoft.config.jwt.JwTokenUtil;
-import com.peaksoft.dto.AuthResponse;
-import com.peaksoft.dto.ChangePassRequest;
 import com.peaksoft.dto.ProfileRequest;
 import com.peaksoft.dto.ProfileResponse;
-import com.peaksoft.exception.IncorrectLoginException;
 import com.peaksoft.mapper.ProfileMapper;
-import com.peaksoft.model.User;
+import com.peaksoft.model.entity.User;
 import com.peaksoft.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,9 +25,9 @@ import org.springframework.stereotype.Component;
 
 
         public ProfileResponse editProfile(ProfileRequest profileRequest) {
-            User user = profileMapper.mapToEntity(profileRequest);
-            userRepository.save(user);
-            return profileMapper.mapToResponse(user);
+            User user = getAuthenticatedUser();
+            profileMapper.mapToEntity(user,profileRequest);
+            return profileMapper.mapToResponse(userRepository.save(user));
         }
 
 
@@ -54,15 +51,15 @@ import org.springframework.stereotype.Component;
                 return authResponse;
             }*/
 
-        }
 
-    /*    public User getAuthenticatedUser() {
+
+        public User getAuthenticatedUser() {
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
             String login = authentication.getName();
             log.info("User: " + authentication.getName());
             return userRepository.findByEmail(login);
         }
-*/
+    }
 
 
 

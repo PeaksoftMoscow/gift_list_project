@@ -2,7 +2,7 @@ package com.peaksoft.service;
 
 import com.peaksoft.dto.UserRequest;
 import com.peaksoft.dto.UserResponse;
-import com.peaksoft.model.User;
+import com.peaksoft.model.entity.User;
 import com.peaksoft.model.entity.enums.RoleE;
 import com.peaksoft.repository.UserRepository;
 import lombok.RequiredArgsConstructor;

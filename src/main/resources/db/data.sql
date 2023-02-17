@@ -5,8 +5,9 @@ VALUES (1,'admin@gmail.com','Adminbek','Adminov','$2a$12$a9V5B/J7SBjwcpBOvltOJ.M
 ','USER');
 
 INSERT INTO shoe_size(id, size)
-VALUES (1,'36'),(2,'37'),
-        (3,'38'),(4,'39'),(5,'40'),(6,'41'),(7,'42'),(8,'43'),(9,'44'),(10,'45');
+VALUES (1,36),(2,37),
+        (3,38);
+--         (4,'39'),(5,'40'),(6,'41'),(7,'42'),(8,'43'),(9,'44'),(10,'45');
 
 INSERT INTO clothing_size(id, size)
 VALUES (1,'XXS'),(2,'XXS')

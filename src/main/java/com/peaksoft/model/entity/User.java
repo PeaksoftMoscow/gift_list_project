@@ -1,7 +1,6 @@
-package com.peaksoft.model;
+package com.peaksoft.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.peaksoft.model.entity.*;
 import com.peaksoft.model.entity.enums.Country;
 
 import com.peaksoft.model.entity.enums.RoleE;

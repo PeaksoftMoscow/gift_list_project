@@ -1,7 +1,6 @@
 package com.peaksoft.halidayCode.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.peaksoft.model.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
