@@ -1,8 +1,8 @@
-package com.peaksoft.Booking.Servise;
+package com.peaksoft.service;
 
-import com.peaksoft.Booking.repository.BookingRepository;
-import com.peaksoft.Booking.repository.CharityRepository;
-import com.peaksoft.Booking.repository.WislistRepository;
+import com.peaksoft.repository.BookingRepository;
+import com.peaksoft.repository.CharityRepository;
+import com.peaksoft.repository.WislistRepository;
 import com.peaksoft.model.User;
 import com.peaksoft.model.entity.Booking;
 import com.peaksoft.model.entity.Charity;
@@ -32,15 +32,13 @@ public User getPrinciple() {
 			() -> {
 				throw new NotFoundException(String.format("Пользователь с таким электронным адресом: %s не найден!", email));
 			});
-	
-	
 }
 
 public Booking bookCharity(Long chatity_id) {
 	User user = getPrinciple();
 	Charity charity = charityRepository.findById(chatity_id).get();
 	Booking booking = new Booking();
-	if (charity.getCharityStatus().equals(CharityStatus.NOT_BOOKED) || charity.getCharityStatus()==null) {
+	if (charity.getCharityStatus().equals(CharityStatus.NOT_BOOKED)) {
 		booking.setId(booking.getId());
 		booking.setCreatedAt(LocalDate.now());
 		booking.setCharity(charity);
@@ -51,11 +49,13 @@ public Booking bookCharity(Long chatity_id) {
 	}
 	return booking;
 }
-public String bookWishlist(Long chatity_id,Long booking_id) {
+
+public String bookWishlist(Long wishlist_id) {
 	User user = getPrinciple();
-	WishList wishList= wislistRepository.findById(chatity_id).get();
-	Booking booking = bookingRepository.findById(booking_id).get();
-	if (wishList.getCharityStatus().equals(CharityStatus.NOT_BOOKED) || wishList.getCharityStatus() == null) {
+	WishList wishList = wislistRepository.findById(wishlist_id).get();
+	Booking booking = new Booking();
+//	Booking booking = bookingRepository.findById(booking_id).get();
+	if (wishList.getCharityStatus().equals(CharityStatus.NOT_BOOKED)) {
 		booking.setId(booking.getId());
 		booking.setCreatedAt(LocalDate.now());
 		booking.setWishList(wishList);

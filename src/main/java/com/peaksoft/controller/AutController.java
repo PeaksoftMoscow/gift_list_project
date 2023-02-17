@@ -1,5 +1,5 @@
 package com.peaksoft.controller;
-import com.peaksoft.Booking.Servise.BookingServise;
+import com.peaksoft.service.BookingServise;
 import com.peaksoft.config.jwt.JwTokenUtil;
 import com.peaksoft.dto.*;
 import com.peaksoft.model.User;
@@ -71,10 +71,10 @@ public Booking booking(@PathVariable Long id) {
 	return bookingServise.bookCharity(id);
 }
 
-@PostMapping("bookWish/{id}/{id1}")
+@PostMapping("bookWish/{id}")
 
-public String bokinhWislist(@PathVariable Long id,@PathVariable Long id1) {
-	return bookingServise.bookWishlist(id,id1);
+public String bokinhWislist(@PathVariable Long id) {
+	return bookingServise.bookWishlist(id);
 }
 }
 

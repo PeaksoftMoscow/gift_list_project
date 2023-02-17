@@ -1,4 +1,4 @@
-package com.peaksoft.Booking.repository;
+package com.peaksoft.repository;
 
 import com.peaksoft.model.entity.Booking;
 import org.springframework.data.jpa.repository.JpaRepository;
