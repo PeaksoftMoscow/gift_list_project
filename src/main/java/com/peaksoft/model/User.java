@@ -51,6 +51,8 @@ public class User implements UserDetails {
 
     private String password;
 
+    private boolean isSubscribeToNewsLetter = false;
+
     @Column(name = "date_of_birth")
     private LocalDate dateOfBirth;
 
@@ -124,6 +126,10 @@ public class User implements UserDetails {
         friends.add(user);
     }
 
+    public void deleteNotification(Notification notification) {
+        this.notificationList.remove(notification);
+    }
+
     @Override
     public String getUsername() {
         return email;
@@ -150,7 +156,11 @@ public class User implements UserDetails {
     }
 
 
+    public void addNotification(Notification notification) {
+        notificationList.add(notification);
+
     }
+}
 
 
 

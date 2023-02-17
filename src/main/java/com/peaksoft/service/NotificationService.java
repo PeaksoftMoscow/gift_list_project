@@ -5,6 +5,7 @@ import com.peaksoft.exception.NotificationNotFoundException;
 import com.peaksoft.mapper.NotificationMapper;
 import com.peaksoft.model.User;
 import com.peaksoft.model.entity.Notification;
+import com.peaksoft.model.entity.enums.NotificationStatus;
 import com.peaksoft.repository.NotificationRepository;
 import com.peaksoft.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,5 +81,36 @@ public class NotificationService {
         notification.setRead(true);
         notificationRepository.save(notification);
         return notificationMapper.notificationResponse(notification);
+    }
+
+    public Notification sendNotification (User user, List<User> receivers){
+        Notification notification = new Notification();
+        notification.setCreatedAt(LocalDate.now());
+        notification.setUser(notification.getUser());
+        notification.setReceivers(receivers);
+        notification.setNotificationStatus(NotificationStatus.REQUEST_TO_FRIEND);
+        return notification;
+    }
+    public Notification acceptToNotification (User user, List<User> receivers){
+        Notification notification = new Notification();
+        notification.setCreatedAt(LocalDate.now());
+        notification.setUser(notification.getUser());
+        notification.setReceivers(receivers);
+        notification.setNotificationStatus(NotificationStatus.ACCEPT_YOUR_REQUEST);
+        return notification;
+    }
+
+
+    public String deleteAllNotification() {
+        User user = getAuthenticationUser();
+        List<Notification> notifications = notificationRepository.getAllNotificationByUserId(user.getId());
+        if (notifications.isEmpty()){
+            throw new NotificationNotFoundException("not found Notification");
+        }
+        for (Notification notification : notifications){
+            notification.deleteUser(user);
+        }
+        notificationRepository.saveAll(notifications);
+        return "Successfully deleted all Notifications";
     }
 }

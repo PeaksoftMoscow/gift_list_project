@@ -36,4 +36,8 @@ public class NotificationController {
     public NotificationResponse getNotificationById(@PathVariable Long id){
         return notificationService.getNotificationByUserId(id);
     }
+
+    public String deleteAllNotification(){
+        return notificationService.deleteAllNotification();
+    }
 }

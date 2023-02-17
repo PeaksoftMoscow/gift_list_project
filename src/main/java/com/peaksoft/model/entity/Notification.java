@@ -59,4 +59,8 @@ public class Notification {
     @JsonIgnore
     private WishList wishList;
 
+    public void deleteUser(User user) {
+        this.receivers.remove(user);
+        user.deleteNotification(this);
+    }
 }

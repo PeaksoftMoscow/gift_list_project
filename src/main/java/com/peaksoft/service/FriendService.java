@@ -1,8 +1,10 @@
 package com.peaksoft.service;
 
 import com.peaksoft.dto.FriendResponse;
+import com.peaksoft.dto.ValidationType;
 import com.peaksoft.mapper.FriendVIewMapper;
 import com.peaksoft.model.User;
+import com.peaksoft.repository.NotificationRepository;
 import com.peaksoft.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -10,6 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -18,6 +21,8 @@ public class FriendService {
 
     private final UserRepository userRepository;
     private final FriendVIewMapper friendVIewMapper;
+    private final NotificationService notificationService;
+    private final NotificationRepository notificationRepository;
 
     public User findByUserId(Long userId) {
         return userRepository.findById(userId).orElseThrow(()
@@ -73,6 +78,8 @@ public class FriendService {
 
         friend.addRequestToFriend(user);
         userRepository.save(friend);
+        friend.addNotification(notificationService.sendNotification(user,new ArrayList<>(List.of(friend))));
+        notificationRepository.saveAll(friend.getNotificationList());
         return friendResponse(friend);
 
     }
@@ -101,6 +108,8 @@ public class FriendService {
             user.getRequestToFriends().remove(friend);
             user.getRequestToFriends().remove(friend);
             userRepository.save(friend);
+            friend.addNotification(notificationService.acceptToNotification(user,new ArrayList<>(List.of(friend))));
+            notificationRepository.saveAll(user.getNotificationList());
         }
         return friendResponse(friend);
     }
