@@ -16,7 +16,7 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "mailingList")
+@Table(name = "mailing_list")
 public class MailingList {
 
     @Id
