@@ -44,14 +44,14 @@ private CharityStatus charityStatus;
 
 private LocalDate created;
 
-@ManyToOne(cascade = {CascadeType.MERGE,
-		CascadeType.PERSIST,
-		CascadeType.REFRESH,
-		CascadeType.DETACH})
-@JoinColumn(name = "holiday_id")
+@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH, CascadeType.PERSIST})
+@JoinTable(name = "holiday_wishList",joinColumns = @JoinColumn(name = "wishList_id")
+		, inverseJoinColumns = @JoinColumn(name = "holidays_id"))
 @JsonIgnore
 private Holiday holidays;
 
+@Transient
+private Long holidayId;
 @ManyToOne
 @JoinColumn(name = "user_id")
 @JsonIgnore
