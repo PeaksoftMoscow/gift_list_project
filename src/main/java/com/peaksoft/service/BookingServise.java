@@ -1,14 +1,14 @@
 package com.peaksoft.service;
 
-import com.peaksoft.repository.BookingRepository;
-import com.peaksoft.repository.CharityRepository;
-import com.peaksoft.repository.WislistRepository;
 import com.peaksoft.model.User;
 import com.peaksoft.model.entity.Booking;
 import com.peaksoft.model.entity.Charity;
 import com.peaksoft.model.entity.WishList;
 import com.peaksoft.model.entity.enums.CharityStatus;
+import com.peaksoft.repository.BookingRepository;
+import com.peaksoft.repository.CharityRepository;
 import com.peaksoft.repository.UserRepository;
+import com.peaksoft.repository.WishListRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,7 +22,7 @@ import java.time.LocalDate;
 public class BookingServise {
 private final BookingRepository bookingRepository;
 private final UserRepository userRepository;
-private final WislistRepository wislistRepository;
+private final WishListRepository wislistRepository;
 private final CharityRepository charityRepository;
 
 public User getPrinciple() {
