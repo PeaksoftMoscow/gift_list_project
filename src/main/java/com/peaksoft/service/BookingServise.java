@@ -65,5 +65,5 @@ public String bookWishlist(Long wishlist_id) {
 		wislistRepository.save(wishList);
 	}
 	return "Susseckuly WishList booking";
-}
+ }
 }
