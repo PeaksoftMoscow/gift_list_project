@@ -49,6 +49,8 @@ private LocalDate created;
 @JoinColumn(name = "holiday_id")
 @JsonIgnore
 private Holiday holidays;
+@Transient
+private Long holidayId;
 
 @ManyToOne
 @JoinColumn(name = "user_id")
