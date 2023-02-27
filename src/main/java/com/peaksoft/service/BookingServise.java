@@ -43,8 +43,14 @@ public Booking bookCharity(Long chatity_id) {
 		booking.setCreatedAt(LocalDate.now());
 		booking.setCharity(charity);
 		booking.setUserId(user);
+		if (user.isBlocked()) {
+			throw new NotFoundException("Your account is blocked ");
+		}
 		bookingRepository.save(booking);
 		charity.setCharityStatus(CharityStatus.BOOKED);
+		if (user.isBlocked()) {
+			throw new NotFoundException("Your account is blocked ");
+		}
 		charityRepository.save(charity);
 	}
 	return booking;
@@ -60,8 +66,14 @@ public String bookWishlist(Long wishlist_id) {
 		booking.setCreatedAt(LocalDate.now());
 		booking.setWishList(wishList);
 		booking.setUserId(user);
+		if (user.isBlocked()) {
+			throw new NotFoundException("Your account is blocked ");
+		}
 		bookingRepository.save(booking);
 		wishList.setCharityStatus(CharityStatus.BOOKED);
+		if (user.isBlocked()) {
+			throw new NotFoundException("Your account is blocked ");
+		}
 		wislistRepository.save(wishList);
 	}
 	return "Susseckuly WishList booking";

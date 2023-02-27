@@ -35,6 +35,9 @@ public class WishListService {
         wishList.setHolidays(holiday);
         wishList.setHolidayId(request.getHolidayId());
         holiday.setWishList(wishList.getHolidays().getWishList());
+        if (user.isBlocked()) {
+            throw new NotFoundException("Your account is blocked ");
+        }
         wishListRepository.save(wishList);
         return mapToResponse(wishList);
     }
