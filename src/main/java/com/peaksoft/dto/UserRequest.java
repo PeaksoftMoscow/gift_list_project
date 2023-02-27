@@ -12,5 +12,6 @@ public class UserRequest {
     private String lastName;
     private String email;
     private String password;
+    private boolean isSubscribeToNewsLetter = false;
     private RoleE role;
 }
