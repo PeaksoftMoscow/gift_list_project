@@ -72,6 +72,9 @@ public class FriendService {
         }
 
         friend.addRequestToFriend(user);
+        if (user.isBlocked()) {
+            throw new NotFoundException("Your account is blocked ");
+        }
         userRepository.save(friend);
         return friendResponse(friend);
 
@@ -100,6 +103,9 @@ public class FriendService {
             user.acceptToFriend(friend);
             user.getRequestToFriends().remove(friend);
             user.getRequestToFriends().remove(friend);
+            if (user.isBlocked()) {
+                throw new NotFoundException("Your account is blocked ");
+            }
             userRepository.save(friend);
         }
         return friendResponse(friend);
@@ -111,6 +117,9 @@ public class FriendService {
         if (user.getFriends().contains(friend)) {
             user.getFriends().remove(friend);
             user.addRequestToFriend(friend);
+            if (user.isBlocked()) {
+                throw new NotFoundException("Your account is blocked ");
+            }
             userRepository.save(friend);
         } else {
             throw new NotFoundException("Friend with id not found " + friend.getId());

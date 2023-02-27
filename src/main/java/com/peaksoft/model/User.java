@@ -61,6 +61,9 @@ public class User implements UserDetails {
     @Column(name = "important_to_know")
     private String importantToKnow;
 
+    private boolean blocked;
+
+
     @OneToMany(fetch = FetchType.LAZY, cascade = ALL, mappedBy = "user")
     private List<WishList> wishList;
 
