@@ -28,13 +28,16 @@ public class WishListService {
     private final HolidayRepository holidayRepository;
 
     public WishListResponse create(WishListRequest request) {
-        User user = getAuthentication();
+        User user = new User();
         Holiday holiday = findByIdHoliday(request.getHolidayId());
         WishList wishList = saveMethod(request);
         wishList.setUser(user);
         wishList.setHolidays(holiday);
         wishList.setHolidayId(request.getHolidayId());
         holiday.setWishList(wishList.getHolidays().getWishList());
+        if (user.isBlocked()) {
+            throw new NotFoundException("Your account is blocked ");
+        }
         wishListRepository.save(wishList);
         return mapToResponse(wishList);
     }
