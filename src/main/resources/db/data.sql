@@ -1,4 +1,4 @@
-INSERT INTO users(id,email,first_name,last_name,password,rolees)
+INSERT INTO users(id,email,first_name,last_name,password,rolees,)
 VALUES (1,'admin@gmail.com','Adminbek','Adminov','$2a$12$a9V5B/J7SBjwcpBOvltOJ.MJvPqSXlShDC6JBIAq15OzvWZGY6qtG
 ','ADMIN'),
     (2,'user@gmail.com','Userbek','Userov','$2a$12$upKSWq9JotkDik1oJ2JfEeJqfuXSfYaKjxE8aYbdS0mAsTCEagAz2

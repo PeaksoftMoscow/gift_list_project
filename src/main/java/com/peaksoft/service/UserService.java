@@ -30,7 +30,7 @@ public User mapToEntity(UserRequest request) {
 	user.setLastName(request.getLastName());
 	user.setEmail(request.getEmail());
 	user.setPassword(request.getPassword());
-	user.setSubscribeToNewsLetter(request.isSubscribeToNewsLetter());
+	user.setSubscribeToNewsletter(request.isSubscribeToNewsLetter());
 	if (user.getFirstName().equals("ryskeldi")) {
 		user.setRoleES(RoleE.ADMIN);
 	} else {

@@ -28,7 +28,7 @@ public class MailingListService {
     public MailingListResponse send(MailingListRequest mailingListRequest) {
         List<User> users = userRepository.findAll();
         for (User user : users){
-            if (user.isSubscribeToNewsLetter()){
+            if (user.isSubscribeToNewsletter()){
                 SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
                 simpleMailMessage.setFrom("ssaidibakas@gmail.com");
                 simpleMailMessage.setTo(user.getEmail());
