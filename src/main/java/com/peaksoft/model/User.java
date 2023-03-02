@@ -57,7 +57,8 @@ public class User implements UserDetails {
     @Size(max = 50000)
     private String hobbies;
 
-    private boolean isSubscribeToNewsletter;
+
+    private boolean isSubscribeToNewsletter =false ;
 
     @Size(max = 5000)
     @Column(name = "important_to_know")
@@ -125,6 +126,7 @@ public class User implements UserDetails {
         }
         friends.add(user);
     }
+
 
     @Override
     public String getUsername() {
