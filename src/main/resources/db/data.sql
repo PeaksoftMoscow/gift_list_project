@@ -1,7 +1,7 @@
 INSERT INTO users(id,email,first_name,last_name,password,rolees,is_subscribe_to_newsletter )
-VALUES (2,'admin@gmail.com','Adminbek','Adminov','$2a$12$a9V5B/J7SBjwcpBOvltOJ.MJvPqSXlShDC6JBIAq15OzvWZGY6qtG
+VALUES (5,'admin@gmail.com','Adminbek','Adminov','$2a$12$a9V5B/J7SBjwcpBOvltOJ.MJvPqSXlShDC6JBIAq15OzvWZGY6qtG
 ','ADMIN','false'),
-    (3,'user@gmail.com','Userbek','Userov','$2a$12$upKSWq9JotkDik1oJ2JfEeJqfuXSfYaKjxE8aYbdS0mAsTCEagAz2
+    (6,'user@gmail.com','Userbek','Userov','$2a$12$upKSWq9JotkDik1oJ2JfEeJqfuXSfYaKjxE8aYbdS0mAsTCEagAz2
 ','USER','true');
 
 INSERT INTO shoe_size(id, size)
