@@ -40,8 +40,6 @@ public HolidayResponse getById(@PathVariable Long id) {
 public List<HolidayResponse> getAllCourse() {
 	return holidayServise.getAllHolidays();
 }
-
-
 }
 
 
