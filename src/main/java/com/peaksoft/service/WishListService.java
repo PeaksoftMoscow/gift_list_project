@@ -2,10 +2,10 @@ package com.peaksoft.service;
 
 import com.peaksoft.dto.WishListRequest;
 import com.peaksoft.dto.WishListResponse;
-import com.peaksoft.halidayCode.repository.HolidayRepository;
-import com.peaksoft.model.User;
-import com.peaksoft.model.entity.Holiday;
-import com.peaksoft.model.entity.WishList;
+import com.peaksoft.repository.HolidayRepository;
+import com.peaksoft.entity.User;
+import com.peaksoft.entity.Holiday;
+import com.peaksoft.entity.WishList;
 import com.peaksoft.repository.UserRepository;
 import com.peaksoft.repository.WishListRepository;
 import lombok.RequiredArgsConstructor;

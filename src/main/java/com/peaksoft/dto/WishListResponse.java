@@ -2,7 +2,7 @@ package com.peaksoft.dto;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.peaksoft.model.User;
+import com.peaksoft.entity.User;
 import lombok.*;
 
 import java.time.LocalDate;

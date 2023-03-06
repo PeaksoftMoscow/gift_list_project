@@ -1,10 +1,10 @@
 package com.peaksoft.service;
 
-import com.peaksoft.model.User;
-import com.peaksoft.model.entity.Booking;
-import com.peaksoft.model.entity.Charity;
-import com.peaksoft.model.entity.WishList;
-import com.peaksoft.model.entity.enums.CharityStatus;
+import com.peaksoft.entity.User;
+import com.peaksoft.entity.Booking;
+import com.peaksoft.entity.Charity;
+import com.peaksoft.entity.WishList;
+import com.peaksoft.entity.enums.CharityStatus;
 import com.peaksoft.repository.BookingRepository;
 import com.peaksoft.repository.CharityRepository;
 import com.peaksoft.repository.UserRepository;
@@ -22,7 +22,7 @@ import java.time.LocalDate;
 public class BookingServise {
 private final BookingRepository bookingRepository;
 private final UserRepository userRepository;
-private final WishListRepository wislistRepository;
+private final WishListRepository wishlistRepository;
 private final CharityRepository charityRepository;
 
 public User getPrinciple() {
@@ -52,7 +52,7 @@ public Booking bookCharity(Long chatity_id) {
 
 public String bookWishlist(Long wishlist_id) {
 	User user = getPrinciple();
-	WishList wishList = wislistRepository.findById(wishlist_id).get();
+	WishList wishList = wishlistRepository.findById(wishlist_id).get();
 	Booking booking = new Booking();
 //	Booking booking = bookingRepository.findById(booking_id).get();
 	if (wishList.getCharityStatus().equals(CharityStatus.NOT_BOOKED)) {
@@ -62,7 +62,7 @@ public String bookWishlist(Long wishlist_id) {
 		booking.setUserId(user);
 		bookingRepository.save(booking);
 		wishList.setCharityStatus(CharityStatus.BOOKED);
-		wislistRepository.save(wishList);
+		wishlistRepository.save(wishList);
 	}
 	return "Susseckuly WishList booking";
  }

@@ -1,8 +1,8 @@
 package com.peaksoft.dto;
 
-import com.peaksoft.model.User;
+import com.peaksoft.entity.User;
 
-import com.peaksoft.model.entity.enums.RoleE;
+import com.peaksoft.entity.enums.RoleE;
 import org.springframework.stereotype.Component;
 
 import java.util.Collections;

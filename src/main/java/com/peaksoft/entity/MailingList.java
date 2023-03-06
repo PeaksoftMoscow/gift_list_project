@@ -1,4 +1,4 @@
-package com.peaksoft.model.entity;
+package com.peaksoft.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;

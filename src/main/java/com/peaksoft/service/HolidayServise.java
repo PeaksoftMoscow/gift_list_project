@@ -1,11 +1,11 @@
-package com.peaksoft.halidayCode.Servise;
+package com.peaksoft.service;
 
-import com.peaksoft.halidayCode.dto.HolidayRequest;
-import com.peaksoft.halidayCode.dto.HolidayResponse;
-import com.peaksoft.halidayCode.repository.HolidayRepository;
+import com.peaksoft.dto.HolidayRequest;
+import com.peaksoft.dto.HolidayResponse;
+import com.peaksoft.repository.HolidayRepository;
 
-import com.peaksoft.model.User;
-import com.peaksoft.model.entity.Holiday;
+import com.peaksoft.entity.User;
+import com.peaksoft.entity.Holiday;
 import com.peaksoft.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;

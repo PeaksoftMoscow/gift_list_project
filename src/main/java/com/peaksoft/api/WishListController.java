@@ -1,8 +1,8 @@
-package com.peaksoft.controller;
+package com.peaksoft.api;
 
 import com.peaksoft.dto.WishListRequest;
 import com.peaksoft.dto.WishListResponse;
-import com.peaksoft.model.entity.WishList;
+import com.peaksoft.entity.WishList;
 import com.peaksoft.service.WishListService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

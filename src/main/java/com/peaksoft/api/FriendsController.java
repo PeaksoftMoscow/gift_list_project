@@ -1,4 +1,4 @@
-package com.peaksoft.controller;
+package com.peaksoft.api;
 
 import com.peaksoft.dto.FriendResponse;
 import com.peaksoft.service.FriendService;

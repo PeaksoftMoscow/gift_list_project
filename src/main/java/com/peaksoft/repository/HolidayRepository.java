@@ -1,6 +1,6 @@
-package com.peaksoft.halidayCode.repository;
+package com.peaksoft.repository;
 
-import com.peaksoft.model.entity.Holiday;
+import com.peaksoft.entity.Holiday;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

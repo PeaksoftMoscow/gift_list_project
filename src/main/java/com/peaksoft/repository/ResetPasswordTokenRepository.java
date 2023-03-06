@@ -1,6 +1,6 @@
 package com.peaksoft.repository;
 
-import com.peaksoft.model.entity.ResetPasswordToken;
+import com.peaksoft.entity.ResetPasswordToken;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

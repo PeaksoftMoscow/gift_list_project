@@ -1,9 +1,9 @@
-package com.peaksoft.controller;
+package com.peaksoft.api;
 import com.peaksoft.service.BookingServise;
 import com.peaksoft.config.jwt.JwTokenUtil;
 import com.peaksoft.dto.*;
-import com.peaksoft.model.User;
-import com.peaksoft.model.entity.Booking;
+import com.peaksoft.entity.User;
+import com.peaksoft.entity.Booking;
 import com.peaksoft.repository.UserRepository;
 import com.peaksoft.service.ResetPasswordService;
 import com.peaksoft.service.UserService;
@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/jwt")
-public class AutController {
+public class AuthController {
 
 private final LoginMapper loginMapper;
 

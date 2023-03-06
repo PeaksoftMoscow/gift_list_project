@@ -1,10 +1,9 @@
-package com.peaksoft.controller;
+package com.peaksoft.api;
 
-import com.peaksoft.halidayCode.Servise.HolidayServise;
-import com.peaksoft.halidayCode.dto.HolidayRequest;
-import com.peaksoft.halidayCode.dto.HolidayResponse;
-import com.peaksoft.model.entity.Holiday;
-import io.swagger.v3.oas.annotations.Operation;
+import com.peaksoft.service.HolidayServise;
+import com.peaksoft.dto.HolidayRequest;
+import com.peaksoft.dto.HolidayResponse;
+import com.peaksoft.entity.Holiday;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

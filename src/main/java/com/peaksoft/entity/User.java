@@ -1,10 +1,9 @@
-package com.peaksoft.model;
+package com.peaksoft.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.peaksoft.model.entity.*;
-import com.peaksoft.model.entity.enums.Country;
+import com.peaksoft.entity.enums.Country;
 
-import com.peaksoft.model.entity.enums.RoleE;
+import com.peaksoft.entity.enums.RoleE;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

@@ -1,8 +1,7 @@
-package com.peaksoft.model.entity;
+package com.peaksoft.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.peaksoft.model.User;
-import com.peaksoft.model.entity.enums.CharityStatus;
+import com.peaksoft.entity.enums.CharityStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

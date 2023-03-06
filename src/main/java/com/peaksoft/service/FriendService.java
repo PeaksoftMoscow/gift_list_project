@@ -2,7 +2,7 @@ package com.peaksoft.service;
 
 import com.peaksoft.dto.FriendResponse;
 import com.peaksoft.mapper.FriendVIewMapper;
-import com.peaksoft.model.User;
+import com.peaksoft.entity.User;
 import com.peaksoft.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;

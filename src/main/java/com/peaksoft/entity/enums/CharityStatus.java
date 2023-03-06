@@ -1,4 +1,4 @@
-package com.peaksoft.model.entity.enums;
+package com.peaksoft.entity.enums;
 
 public enum CharityStatus {
 

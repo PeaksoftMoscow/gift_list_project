@@ -1,7 +1,6 @@
-package com.peaksoft.model.entity;
+package com.peaksoft.entity;
 
 
-import com.peaksoft.model.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

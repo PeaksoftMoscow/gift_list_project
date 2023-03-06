@@ -1,7 +1,7 @@
 package com.peaksoft.mapper;
 
 import com.peaksoft.dto.FriendResponse;
-import com.peaksoft.model.User;
+import com.peaksoft.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
