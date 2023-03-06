@@ -36,6 +36,7 @@ private LocalDate date;
 		CascadeType.DETACH})
 @JsonIgnore
 private List<WishList> wishList;
+
 @Transient
 private Long wish_id;
 

@@ -1,13 +1,13 @@
 package com.peaksoft.controller;
 
 import com.peaksoft.dto.UserRequest;
-import com.peaksoft.servise.*;
+import com.peaksoft.service.*;
 import com.peaksoft.dto.UserResponse;
 import com.peaksoft.dto.ValidationType;
 import com.peaksoft.repository.UserRepository;
-import com.peaksoft.spring_boot_jwt_token.dto.*;
+import com.peaksoft.dto.*;
 import com.peaksoft.model.User;
-import com.peaksoft.spring_boot_jwt_token.security.jwt.JwTokenUtil;
+import com.peaksoft.config.jwt.JwTokenUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;

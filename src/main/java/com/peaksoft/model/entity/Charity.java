@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.peaksoft.model.User;
 import com.peaksoft.model.entity.enums.CharityStatus;
 import com.peaksoft.model.entity.enums.Condition;
+import com.peaksoft.model.entity.enums.Country;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -39,21 +40,28 @@ public class Charity {
 
     private boolean isBlocked;
 
-
     @Enumerated(EnumType.STRING)
     private Condition condition;
+
+    @Enumerated(EnumType.STRING)
+    private Country country;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     @JsonIgnore
     private User user;
 
-    @ManyToOne(cascade = {CascadeType.REFRESH,
-            CascadeType.MERGE,
-            CascadeType.PERSIST,
-            CascadeType.DETACH})
+    @Transient
+    private Long userId;
+
+
+    @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.DETACH} ,fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private Category category;
+
+    @Transient
+    private Long categoryId;
+
 
     @ManyToOne(cascade = {CascadeType.MERGE,
             CascadeType.PERSIST,
@@ -61,6 +69,10 @@ public class Charity {
             CascadeType.REFRESH})
     @JoinColumn(name = "subcategory_id")
     private Subcategory subCategory;
+
+    @Transient
+    private Long subCategoryId;
+
 
     @OneToOne(mappedBy = "charity",cascade = CascadeType.ALL)
     private Booking booking;

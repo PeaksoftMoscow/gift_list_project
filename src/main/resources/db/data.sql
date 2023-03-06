@@ -1,8 +1,9 @@
 INSERT INTO users(id,email,first_name,last_name,password,rolees)
-VALUES (1,'admin@gmail.com','Adminbek','Adminov','$2a$12$a9V5B/J7SBjwcpBOvltOJ.MJvPqSXlShDC6JBIAq15OzvWZGY6qtG
+VALUES (3,'admin@gmail.com','Adminbek','Adminov','$2a$12$a9V5B/J7SBjwcpBOvltOJ.MJvPqSXlShDC6JBIAq15OzvWZGY6qtG
 ','ADMIN'),
-    (2,'user@gmail.com','Userbek','Userov','$2a$12$upKSWq9JotkDik1oJ2JfEeJqfuXSfYaKjxE8aYbdS0mAsTCEagAz2
+    (4,'user@gmail.com','Userbek','Userov','$2a$12$upKSWq9JotkDik1oJ2JfEeJqfuXSfYaKjxE8aYbdS0mAsTCEagAz2
 ','USER');
+
 
 INSERT INTO shoe_size(id, size)
 VALUES (1,'36'),(2,'37'),
@@ -14,7 +15,7 @@ VALUES (1,'XXS'),(2,'XXS')
 
 INSERT INTO categories(id, category_name)
 VALUES (1, 'Electronic'),
-     (2, 'Clothes'),
+      (2, 'Clothes'),
       (3, 'School'),
       (4, 'House and garden'),
       (5, 'Shoe'),
