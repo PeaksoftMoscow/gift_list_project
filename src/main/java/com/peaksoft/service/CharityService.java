@@ -20,7 +20,7 @@ import org.webjars.NotFoundException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
 @RequiredArgsConstructor
@@ -39,17 +39,22 @@ public class CharityService {
 	}
 
 	public CharityResponse update(Long id, CharityRequest request){
-		Charity charity = charityRepository.findById(id).get();
+		Charity charity = charityRepository.findById(id)
+				.orElseThrow(() -> new NotFoundException(String.format("Charity с id %d не найден", id)));
+
 		mapToUpdate(request,charity);
 		return charityResponse(charityRepository.save(charity));
 	}
 
-	public CharityResponse deleteById(Long id){
-		Charity charity = charityRepository.findById(id).get();
+
+	public CharityResponse deleteById(Long id) {
+		Charity charity = charityRepository.findById(id)
+				.orElseThrow(() -> new NotFoundException(String.format("Charity с id %d не найден", id)));
 
 		charityRepository.deleteById(id);
 		return charityResponse(charity);
 	}
+
 
 	public CharityResponse getById(Long id){
 		Charity charity = charityRepository.findById(id).orElseThrow(()-> new NotFoundException(String.format("charity is not found"+id)));
@@ -99,7 +104,6 @@ public class CharityService {
 		charity.setCondition(request.getCondition());
 		charity.setCountry(request.getCountry());
 		charity.setCharityStatus(request.getCharityStatus());
-
 
 		Category category = categoryRepository.findById(request.getCategoryId())
 				.orElseThrow(() -> new NotFoundException("Category not found with id " + request.getCategoryId()));

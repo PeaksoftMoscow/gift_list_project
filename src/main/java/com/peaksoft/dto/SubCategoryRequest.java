@@ -17,6 +17,8 @@ public class SubCategoryRequest {
 
     private Category category;
 
+    private Long categoryId;
+
     private List<Charity> charities;
 
 }

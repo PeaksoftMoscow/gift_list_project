@@ -53,31 +53,9 @@ public class CategoryService {
     public Category mapToEntity(CategoryRequest request) {
         Category category = new Category();
         category.setCategoryName(request.getCategoryName());
-        category.setCharities(request.getCharities());
-        category.setSubcategories(request.getSubcategories());
         return category;
     }
-//    public Category mapToEntity(CategoryRequest request) {
-//        Category category = new Category();
-//        category.setCategoryName(request.getCategoryName());
-//
-//        // Добавляем подкатегорию
-//        Subcategory subcategory = new Subcategory();
-//        subcategory.setSubcategoryName(subcategoryName);
-//        category.setSubcategory(subcategory);
-//
-//        // Добавляем благотворительные организации
-//        List<Charity> charitiesList = new ArrayList<>();
-//        for (CharityRequest charityRequest : charities) {
-//            Charity charity = new Charity();
-//            charity.setName(charityRequest.getName());
-//            charity.setDescription(charityRequest.getDescription());
-//            charitiesList.add(charity);
-//        }
-//        category.setCharities(charitiesList);
-//
-//        return category;
-//    }
+
 
 
     public CategoryResponse categoryResponse(Category category) {

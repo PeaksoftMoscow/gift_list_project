@@ -16,7 +16,5 @@ public class CategoryResponse {
 
     private String categoryName;
 
-    private List<Subcategory> subcategories;
 
-    private List<Charity> charities;
 }

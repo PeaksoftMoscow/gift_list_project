@@ -13,8 +13,6 @@ public class CategoryRequest {
 
     private String categoryName;
 
-    private List<Subcategory> subcategories;
 
-    private List<Charity> charities;
 
 }

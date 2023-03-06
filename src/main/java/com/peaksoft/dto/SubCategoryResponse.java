@@ -19,5 +19,7 @@ public class SubCategoryResponse {
 
     private Category category;
 
+    private Long categoryId;
+
     private List<Charity> charities;
 }

@@ -1,6 +1,7 @@
 package com.peaksoft.controller;
 
 import com.peaksoft.dto.UserRequest;
+import com.peaksoft.model.entity.Booking;
 import com.peaksoft.service.*;
 import com.peaksoft.dto.UserResponse;
 import com.peaksoft.dto.ValidationType;
@@ -16,10 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -31,7 +29,7 @@ public class AutController {
     private final JwTokenUtil jwTokenUtil;
     private final LoginMapper loginMapper;
 
-
+    private final BookingServise bookingServise;
     private final AuthenticationManager authenticationManager;
 
     @PostMapping("login")
@@ -51,5 +49,16 @@ public class AutController {
     @PostMapping("/registration")
     public UserResponse create(@RequestBody UserRequest request) {
         return userService.register(request);
+    }
+
+    @PostMapping("book/{id}")
+    public Booking booking(@PathVariable Long id) {
+        return bookingServise.bookCharity(id);
+    }
+
+    @PostMapping("bookWish/{id}")
+
+    public String bokinhWislist(@PathVariable Long id) {
+        return bookingServise.bookWishlist(id);
     }
 }

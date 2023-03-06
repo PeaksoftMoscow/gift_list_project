@@ -3,10 +3,13 @@ package com.peaksoft.service;
 
 import com.peaksoft.dto.SubCategoryRequest;
 import com.peaksoft.dto.SubCategoryResponse;
+import com.peaksoft.model.entity.Category;
 import com.peaksoft.model.entity.Subcategory;
+import com.peaksoft.repository.CategoryRepository;
 import com.peaksoft.repository.SubCategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.webjars.NotFoundException;
 
 import java.util.List;
 
@@ -15,6 +18,8 @@ import java.util.List;
 public class SubCategoryService {
 
     private final SubCategoryRepository subCategoryRepository;
+
+    private final CategoryRepository categoryRepository;
 
     public SubCategoryResponse create(SubCategoryRequest request){
         Subcategory subCategory = mapToEntity(request);
@@ -44,12 +49,21 @@ public class SubCategoryService {
     public Subcategory mapToUpdate(SubCategoryRequest request, Subcategory subCategory){
         subCategory.setSubcategoryName(request.getSubcategoryName());
 
+        Category category = categoryRepository.findById(request.getCategoryId())
+                .orElseThrow(() -> new NotFoundException("Category not found with id " + request.getCategoryId()));
+        subCategory.setCategory(category);
+        subCategory.setCategoryId(request.getCategoryId());
         return subCategory;
     }
 
     public Subcategory mapToEntity(SubCategoryRequest request) {
         Subcategory subCategory = new Subcategory();
         subCategory.setSubcategoryName(request.getSubcategoryName());
+
+        Category category = categoryRepository.findById(request.getCategoryId())
+                .orElseThrow(() -> new NotFoundException("Category not found with id " + request.getCategoryId()));
+        subCategory.setCategory(category);
+        subCategory.setCategoryId(request.getCategoryId());
 
         return subCategory;
     }
@@ -59,6 +73,7 @@ public class SubCategoryService {
         return SubCategoryResponse.builder()
                 .id(subCategory.getId())
                 .subcategoryName(subCategory.getSubcategoryName())
+                .categoryId(subCategory.getCategory().getId())
                 .build();
     }
 

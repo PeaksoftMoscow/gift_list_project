@@ -16,6 +16,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import static javax.persistence.CascadeType.*;
+import static javax.persistence.CascadeType.REFRESH;
+
 @Entity
 @Table(name = "charity")
 @Getter
@@ -55,7 +58,7 @@ public class Charity {
     private Long userId;
 
 
-    @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.DETACH} ,fetch = FetchType.LAZY)
+    @ManyToOne(cascade = {DETACH,PERSIST,MERGE,REFRESH} ,fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private Category category;
 
