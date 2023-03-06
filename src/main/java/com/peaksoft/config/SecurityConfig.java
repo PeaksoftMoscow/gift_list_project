@@ -1,7 +1,7 @@
 package com.peaksoft.config;
 
-import com.peaksoft.service.UserServiceImpl;
 import com.peaksoft.config.jwt.JwTokenFilter;
+import com.peaksoft.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -31,14 +31,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public BCryptPasswordEncoder passwordEncoder(){
+    public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-       auth.userDetailsService(userServiceImpl).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(userServiceImpl).passwordEncoder(passwordEncoder());
     }
 
     @Override
@@ -58,6 +58,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.addFilterBefore(jwTokenFilter, UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(jwTokenFilter, UsernamePasswordAuthenticationFilter.class)
+                .logout().
+                logoutSuccessUrl("/login");
     }
 }

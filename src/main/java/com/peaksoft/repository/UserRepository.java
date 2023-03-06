@@ -8,9 +8,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface UserRepository extends JpaRepository<User,Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
     User findByEmail(String email);
-	User findByFirstName(String name);
+
+    User findByFirstName(String name);
 
 
     @Query("SELECT f FROM User u JOIN u.friends f WHERE u.id=?1")

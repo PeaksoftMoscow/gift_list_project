@@ -45,7 +45,9 @@ public class User implements UserDetails {
 
     private String image;
 
+
     @Column(name = "country")
+    @Enumerated(EnumType.STRING)
     private Country country;
 
     private String password;
