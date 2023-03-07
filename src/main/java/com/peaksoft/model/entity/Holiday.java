@@ -30,10 +30,10 @@ private String image;
 @JsonFormat(pattern = "yyyy.MM.dd")
 private LocalDate date;
 
-@OneToMany(cascade = {CascadeType.MERGE,
-		CascadeType.PERSIST,
-		CascadeType.REFRESH,
-		CascadeType.DETACH})
+@OneToMany(fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST,
+			CascadeType.MERGE})
+@JoinTable(name = "holiday_wishList", joinColumns = @JoinColumn(name = "holidays_id")
+			, inverseJoinColumns = @JoinColumn(name = "wishList_id"))
 @JsonIgnore
 private List<WishList> wishList;
 

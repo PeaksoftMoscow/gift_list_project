@@ -39,8 +39,6 @@ private String image;
 private String description;
 
 private String link;
-@Enumerated(EnumType.STRING)
-private CharityStatus charityStatus;
 
 private LocalDate created;
 
@@ -51,11 +49,16 @@ private LocalDate created;
 @JoinColumn(name = "holiday_id")
 @JsonIgnore
 private Holiday holidays;
+@Transient
+private Long holidayId;
 
 @ManyToOne
 @JoinColumn(name = "user_id")
 @JsonIgnore
 private User user;
+
+@Enumerated(EnumType.STRING)
+private CharityStatus charityStatus;
 
 @OneToOne(mappedBy = "wishList", cascade = CascadeType.ALL)
 private Booking booking;

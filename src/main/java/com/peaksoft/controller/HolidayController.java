@@ -4,6 +4,7 @@ import com.peaksoft.halidayCode.Servise.HolidayServise;
 import com.peaksoft.halidayCode.dto.HolidayRequest;
 import com.peaksoft.halidayCode.dto.HolidayResponse;
 import com.peaksoft.model.entity.Holiday;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,8 +40,6 @@ public HolidayResponse getById(@PathVariable Long id) {
 public List<HolidayResponse> getAllCourse() {
 	return holidayServise.getAllHolidays();
 }
-
-
 }
 
 
