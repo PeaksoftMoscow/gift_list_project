@@ -10,6 +10,8 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.List;
 
+import static javax.persistence.CascadeType.*;
+
 @Entity
 @Getter
 @Setter
@@ -26,11 +28,11 @@ public class Category {
     @Column(name = "category_name")
     private String categoryName;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
+    @OneToMany(fetch = FetchType.LAZY, cascade = {REFRESH,PERSIST,MERGE,DETACH}, mappedBy = "category")
     @JsonIgnore
     private List<Subcategory> subcategories;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY, cascade = {DETACH,PERSIST,MERGE,REFRESH})
     @JsonIgnore
     private List<Charity> charities;
 }
