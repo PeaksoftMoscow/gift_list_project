@@ -20,6 +20,4 @@ public class FriendResponse {
     @Email
     private String email;
 
-
-
 }

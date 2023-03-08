@@ -29,7 +29,10 @@ public class Subcategory {
     @JsonIgnore
     private Category category;
 
-    @OneToMany
+    @Transient
+    private Long categoryId;
+
+    @OneToMany(mappedBy = "subCategory", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.DETACH, CascadeType.REFRESH})
     @JsonIgnore
     private List<Charity> charities;
 
