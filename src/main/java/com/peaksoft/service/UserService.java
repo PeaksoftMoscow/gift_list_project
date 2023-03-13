@@ -2,6 +2,7 @@ package com.peaksoft.service;
 
 import com.peaksoft.dto.UserRequest;
 import com.peaksoft.dto.UserResponse;
+import com.peaksoft.exception.FobidenExceptoin;
 import com.peaksoft.model.User;
 import com.peaksoft.model.entity.enums.RoleE;
 import com.peaksoft.repository.UserRepository;
@@ -16,6 +17,9 @@ private final UserRepository userRepository;
 private final PasswordEncoder encoder;
 
 public UserResponse register(UserRequest userRequest) {
+	if (userRepository.existsByEmail(userRequest.getEmail())){
+		throw new FobidenExceptoin(String.format("Пользователь с этим электронным адресом: %s уже существует!", userRequest.getEmail()));
+	}
 	User user1 = new User();
 	userRepository.findByEmail(user1.getEmail());
 	User user = mapToEntity(userRequest);

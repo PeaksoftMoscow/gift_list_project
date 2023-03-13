@@ -3,6 +3,7 @@ package com.peaksoft.service;
 import com.peaksoft.dto.CategoryRequest;
 import com.peaksoft.dto.CategoryResponse;
 import com.peaksoft.dto.CharityRequest;
+import com.peaksoft.exception.NotFoundException;
 import com.peaksoft.model.entity.Category;
 import com.peaksoft.model.entity.Charity;
 import com.peaksoft.model.entity.Subcategory;
@@ -26,20 +27,20 @@ public class CategoryService {
     }
 
     public CategoryResponse update(Long id, CategoryRequest request) {
-        Category category = categoryRepository.findById(id).get();
+        Category category = categoryRepository.findById(id).orElseThrow(() -> new NotFoundException("Category not found"));
         mapToUpdate(request, category);
         return categoryResponse(categoryRepository.save(category));
     }
 
     public CategoryResponse deleteById(Long id) {
-        Category category = categoryRepository.findById(id).get();
+        Category category = categoryRepository.findById(id).orElseThrow(() -> new NotFoundException("Category not found"));
 
         categoryRepository.deleteById(id);
         return categoryResponse(category);
     }
 
     public CategoryResponse getById(Long id) {
-        Category category = categoryRepository.findById(id).get();
+        Category category = categoryRepository.findById(id).orElseThrow(() -> new NotFoundException("Category not found"));
         categoryRepository.findById(id);
         return categoryResponse(category);
     }

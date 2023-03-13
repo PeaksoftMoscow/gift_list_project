@@ -4,7 +4,9 @@ import com.peaksoft.config.jwt.JwTokenUtil;
 import com.peaksoft.dto.AuthResponse;
 import com.peaksoft.dto.Mail;
 import com.peaksoft.dto.ValidationType;
+import com.peaksoft.exception.ApiRequestException;
 import com.peaksoft.exception.IncorrectLoginException;
+import com.peaksoft.exception.NotFoundException;
 import com.peaksoft.model.entity.ResetPasswordToken;
 import com.peaksoft.model.User;
 import com.peaksoft.repository.ResetPasswordTokenRepository;
@@ -35,7 +37,7 @@ public class ResetPasswordService {
 
         User user = userRepository.findByEmail(email).get();
         if (user == null){
-            throw new UsernameNotFoundException("User with email" + email + "not found");
+            throw new NotFoundException("User with email" + email + "not found");
         }
         ResetPasswordToken resetPasswordToken = new ResetPasswordToken();
         resetPasswordToken.setUser(user);
@@ -64,7 +66,7 @@ public class ResetPasswordService {
         if (password.equals(confirmPassword)) {
             user.setPassword(password);
         }else {
-            throw new IncorrectLoginException("Password don't match");
+            throw new ApiRequestException("Password don't match");
         }
         updatePassword(user);
         AuthResponse authResponse = new AuthResponse();
