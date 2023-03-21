@@ -1,5 +1,6 @@
 package com.peaksoft.halidayCode.Servise;
 
+import com.peaksoft.exception.NotFoundException;
 import com.peaksoft.halidayCode.dto.HolidayRequest;
 import com.peaksoft.halidayCode.dto.HolidayResponse;
 import com.peaksoft.halidayCode.repository.HolidayRepository;
@@ -24,7 +25,7 @@ public class HolidayServise {
 
 
     public Holiday create(HolidayRequest holidayRequest, Long userId) {
-        User user = userRepository.findById(userId).get();
+	    User user = userRepository.findById(userId).orElseThrow(() -> new NotFoundException("User not found"));
         holidayRequest.setUser(user);
         Holiday holiday = holidayRepository.save(mapToEntity(holidayRequest));
 
@@ -34,7 +35,7 @@ public class HolidayServise {
 
 
     public HolidayResponse update(Long id, HolidayRequest holidayRequest) {
-        Holiday holiday = holidayRepository.findById(id).get();
+	    Holiday holiday = holidayRepository.findById(id).orElseThrow(() -> new NotFoundException("Holiday not found"));
         holiday.setImage(holidayRequest.getImage());
         holiday.setHolidayName(holidayRequest.getHolidayName());
         holiday.setDate(holidayRequest.getDate());
@@ -43,14 +44,14 @@ public class HolidayServise {
     }
 
     public HolidayResponse findById(Long id) {
-        Holiday holiday = holidayRepository.findById(id).get();
-        System.out.println("Get holiday with id: " + id);
+	    Holiday holiday = holidayRepository.findById(id).orElseThrow(() -> new NotFoundException("Holiday not found"));
+	    System.out.println("Get holiday with id: " + id);
         return holidayResponse(holiday);
     }
 
     public String deleteById(Long id) {
-        Holiday holiday = holidayRepository.findById(id).get();
-        holidayRepository.deleteById(holiday.getId());
+	    Holiday holiday = holidayRepository.findById(id).orElseThrow(() -> new NotFoundException("Holiday not found"));
+	    holidayRepository.deleteById(holiday.getId());
         return "Holiday successfully deleted!";
     }
 

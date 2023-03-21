@@ -3,6 +3,7 @@ package com.peaksoft.service;
 import com.peaksoft.dto.CharityRequest;
 import com.peaksoft.dto.CharityResponse;
 import com.peaksoft.dto.CharityResponseView;
+import com.peaksoft.exception.NotFoundException;
 import com.peaksoft.model.User;
 import com.peaksoft.model.entity.Category;
 import com.peaksoft.model.entity.Charity;
@@ -15,7 +16,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-import org.webjars.NotFoundException;
+
 
 import java.time.LocalDate;
 import java.util.ArrayList;

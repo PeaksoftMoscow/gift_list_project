@@ -3,13 +3,14 @@ package com.peaksoft.service;
 
 import com.peaksoft.dto.SubCategoryRequest;
 import com.peaksoft.dto.SubCategoryResponse;
+import com.peaksoft.exception.NotFoundException;
 import com.peaksoft.model.entity.Category;
 import com.peaksoft.model.entity.Subcategory;
 import com.peaksoft.repository.CategoryRepository;
 import com.peaksoft.repository.SubCategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.webjars.NotFoundException;
+
 
 import java.util.List;
 
@@ -28,20 +29,19 @@ public class SubCategoryService {
     }
 
     public SubCategoryResponse update(Long id, SubCategoryRequest request){
-        Subcategory subCategory = subCategoryRepository.findById(id).get();
+        Subcategory subCategory = subCategoryRepository.findById(id).orElseThrow(() -> new NotFoundException("SubCategory not found"));
         mapToUpdate(request,subCategory);
         return subCategoryResponse(subCategoryRepository.save(subCategory));
     }
 
     public SubCategoryResponse deleteById(Long id){
-        Subcategory subCategory = subCategoryRepository.findById(id).get();
-
+        Subcategory subCategory = subCategoryRepository.findById(id).orElseThrow(() -> new NotFoundException("SubCategory not found"));
         subCategoryRepository.deleteById(id);
         return subCategoryResponse(subCategory);
     }
 
     public SubCategoryResponse getById(Long id){
-        Subcategory category = subCategoryRepository.findById(id).get();
+        Subcategory category = subCategoryRepository.findById(id).orElseThrow(() -> new com.peaksoft.exception.NotFoundException("SubCategory not found"));
         subCategoryRepository.findById(id);
         return subCategoryResponse(category);
     }

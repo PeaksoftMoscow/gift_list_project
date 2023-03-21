@@ -1,6 +1,7 @@
 package com.peaksoft.service;
 
 import com.peaksoft.dto.FriendResponse;
+import com.peaksoft.exception.NotFoundException;
 import com.peaksoft.mapper.FriendVIewMapper;
 import com.peaksoft.model.User;
 import com.peaksoft.repository.UserRepository;
@@ -8,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import org.webjars.NotFoundException;
+
 
 import java.util.List;
 

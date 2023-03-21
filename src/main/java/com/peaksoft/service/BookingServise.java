@@ -1,5 +1,9 @@
 package com.peaksoft.service;
 
+import com.peaksoft.exception.ApiException;
+import com.peaksoft.exception.ApiRequestException;
+import com.peaksoft.exception.FobidenExceptoin;
+import com.peaksoft.exception.NotFoundException;
 import com.peaksoft.model.User;
 import com.peaksoft.model.entity.Booking;
 import com.peaksoft.model.entity.Charity;
@@ -13,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import org.webjars.NotFoundException;
+
 
 import java.time.LocalDate;
 
@@ -36,7 +40,7 @@ public class BookingServise {
 
     public Booking bookCharity(Long chatity_id) {
         User user = getPrinciple();
-        Charity charity = charityRepository.findById(chatity_id).get();
+        Charity charity = charityRepository.findById(chatity_id).orElseThrow(() -> new NotFoundException("Charity not fond"));
         Booking booking = new Booking();
         if (charity.getCharityStatus().equals(CharityStatus.NOT_BOOKED)) {
             booking.setId(booking.getId());
@@ -46,13 +50,16 @@ public class BookingServise {
             bookingRepository.save(booking);
             charity.setCharityStatus(CharityStatus.BOOKED);
             charityRepository.save(charity);
+	        return booking;
+        }else {
+			throw new ApiRequestException("This charity booked");
         }
-        return booking;
+		
     }
 
     public String bookWishlist(Long wishlist_id) {
         User user = getPrinciple();
-        WishList wishList = wislistRepository.findById(wishlist_id).get();
+        WishList wishList = wislistRepository.findById(wishlist_id).orElseThrow(() -> new NotFoundException("Wishlist not fond"));
         Booking booking = new Booking();
 //	Booking booking = bookingRepository.findById(booking_id).get();
         if (wishList.getCharityStatus().equals(CharityStatus.NOT_BOOKED)) {
@@ -63,7 +70,10 @@ public class BookingServise {
             bookingRepository.save(booking);
             wishList.setCharityStatus(CharityStatus.BOOKED);
             wislistRepository.save(wishList);
+			return "Susseckuly WishList booking";
+        }else {
+			throw new ApiRequestException("This wishlist booked");
         }
-        return "Susseckuly WishList booking";
+       
     }
 }
