@@ -28,7 +28,7 @@ import static javax.persistence.CascadeType.*;
 public class User implements UserDetails {
 
     @Id
-    @GeneratedValue(generator = "user_gen", strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(generator = "user_gen", strategy = GenerationType.IDENTITY)
     @SequenceGenerator(name = "user_gen", sequenceName = "user_seq", allocationSize = 1)
     private Long id;
 
@@ -56,6 +56,9 @@ public class User implements UserDetails {
 
     @Size(max = 50000)
     private String hobbies;
+
+
+    private Boolean isSubscribeToNewsletter = false ;
 
     @Size(max = 5000)
     @Column(name = "important_to_know")
@@ -123,6 +126,7 @@ public class User implements UserDetails {
         }
         friends.add(user);
     }
+
 
     @Override
     public String getUsername() {

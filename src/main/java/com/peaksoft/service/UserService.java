@@ -25,11 +25,16 @@ public UserResponse register(UserRequest userRequest) {
 }
 
 public User mapToEntity(UserRequest request) {
+	if (request == null){
+		return null;
+	}
 	User user = new User();
 	user.setFirstName(request.getFirstName());
 	user.setLastName(request.getLastName());
 	user.setEmail(request.getEmail());
 	user.setPassword(request.getPassword());
+	user.setIsSubscribeToNewsletter(request.getIsSubscribeToNewsLetter());
+
 	if (user.getFirstName().equals("ryskeldi")) {
 		user.setRoleES(RoleE.ADMIN);
 	} else {
@@ -45,6 +50,7 @@ public UserResponse mapToResponse(User user) {
 			       .email(user.getEmail())
 			       .password(user.getPassword())
 			       .role(user.getRoleES())
+			.isSubscribeToNewsLetter(user.getIsSubscribeToNewsletter())
 			       .build();
 }
 }

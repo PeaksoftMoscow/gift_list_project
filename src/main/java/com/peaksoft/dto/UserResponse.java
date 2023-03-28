@@ -15,6 +15,7 @@ public class UserResponse  {
     private String lastName;
     private String email;
     private String password;
+    private Boolean isSubscribeToNewsLetter ;
     private RoleE role;
 
 }
